@@ -61930,7 +61930,7 @@ function downloadLatest(accessToken) {
                 tag: buildcacheTag
             });
             if (!releaseInfo) {
-                throw new Error(`Unable to fine a buildcache release with tag '${buildcacheTag}'`);
+                throw new Error(`Unable to find a buildcache release with tag '${buildcacheTag}'`);
             }
         }
         // core.info(`Got release info: ${JSON.stringify(releaseInfo, null, 2)}`)
