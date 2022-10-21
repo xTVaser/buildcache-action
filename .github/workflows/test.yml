@@ -21,17 +21,22 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-latest, ubuntu-22.04, macos-latest, windows-latest]
+        os: [ubuntu-22.04, macos-latest, windows-latest]
     steps:
       - uses: actions/checkout@v3
-
       - uses: ./
-        if: ${{ matrix.os }} == ubuntu-latest # https://github.com/mbitsnbites/buildcache/issues/291
+        with:
+          cache_key: build-test-${{ matrix.os }}
+  test-ubuntu-lts: # make sure the action works on a clean machine without building
+    # https://github.com/mbitsnbites/buildcache/issues/291
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./
         with:
           cache_key: build-test-${{ matrix.os }}
           buildcache_tag: v0.27.6
 
-      - uses: ./
-        if: ${{ matrix.os }} != ubuntu-latest # https://github.com/mbitsnbites/buildcache/issues/291
-        with:
-          cache_key: build-test-${{ matrix.os }}
