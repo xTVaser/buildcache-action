@@ -45,10 +45,15 @@ test('test bundled restore runs', async () => {
   const np = process.execPath
 
   const installDir = await getInstallDir()
-  const env = process.env
-  env['PATH'] = `${installDir}/buildcache/bin:${env['PATH']}`
-  const options: cp.ExecFileSyncOptions = {
-    env
+  const PATH = `${installDir}/buildcache/bin:${process.env['PATH']}`
+  const options = {
+    env: {
+      ...process.env,
+      PATH,
+      ...mapInputToEnv({
+        buildcache_tag: process.env['ACTION_BUILDCACHE_TAG'] || 'latest'
+      })
+    }
   }
 
   const rp = path.join(__dirname, '..', 'dist', 'restore', 'index.js')
