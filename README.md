@@ -3,6 +3,7 @@
 - Keeping the lights on by doing bare minimum updates
 - Updated to Node20
 - Pulls releases from https://gitlab.com/bits-n-bites/buildcache/-/releases as `buildcache` moved to GitLab
+- You must explicitly provide the `buildcache_tag` input
 
 # Accelerate builds using buildcache
 

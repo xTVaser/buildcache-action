@@ -47,6 +47,7 @@ jobs:
       - uses: ./
         with:
           cache_key: build-test-${{ matrix.os }}
+          buildcache_tag: v0.28.9
   test-ubuntu-20-04: # make sure the action works on a clean machine without building
     # https://github.com/mbitsnbites/buildcache/issues/291
     runs-on: ${{ matrix.os }}
@@ -61,5 +62,5 @@ jobs:
       - uses: ./
         with:
           cache_key: build-test-${{ matrix.os }}
-          buildcache_tag: v0.27.6
+          buildcache_tag: v0.28.9
 
