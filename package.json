@@ -1,7 +1,6 @@
 {
   "name": "buildcache-action",
   "version": "1.2.2",
-  "private": false,
   "description": "GitHub Action that installs and configures buildcache to accelerate compilation",
   "main": "dist/restore/index.js",
   "scripts": {
@@ -49,7 +48,7 @@
     "@types/node": "^16.10.2",
     "@types/rimraf": "^3.0.2",
     "@typescript-eslint/parser": "^4.32.0",
-    "@vercel/ncc": "^0.31.1",
+    "@vercel/ncc": "^0.38.1",
     "conventional-changelog-conventionalcommits": "^5.0.0",
     "eslint": "^7.32.0",
     "eslint-plugin-github": "^4.3.0",
@@ -67,6 +66,6 @@
     "typescript": "^4.4.3"
   },
   "engines": {
-    "node": ">=14.17.0"
+    "node": ">=20.11.1"
   }
 }
