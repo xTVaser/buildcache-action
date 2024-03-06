@@ -58,7 +58,7 @@ export async function downloadLatest(accessToken: string): Promise<string> {
   }
 
   // core.info(`Got release info: ${JSON.stringify(releaseInfo, null, 2)}`)
-  const buildCacheReleaseUrl = `https://github.com/mbitsnbites/buildcache/releases/download/${releaseInfo.data.tag_name}/${filename}`
+  const buildCacheReleaseUrl = `https://gitlab.com/bits-n-bites/buildcache/-/releases/v0.28.7/downloads/${releaseInfo.data.tag_name}/${filename}`
 
   if (!buildCacheReleaseUrl) {
     throw new Error('Unable to determine release URL for buildcache')
