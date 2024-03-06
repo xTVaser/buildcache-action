@@ -12,7 +12,10 @@ jobs:
       GITHUB_TOKEN: '${{ github.token }}'
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
       - run: |
           yarn
       - run: |
@@ -23,7 +26,10 @@ jobs:
       ACTION_BUILDCACHE_TAG: "v0.27.6"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
       - run: |
           yarn
       - run: |
@@ -34,7 +40,10 @@ jobs:
       matrix:
         os: [ubuntu-22.04, macos-latest, windows-latest]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
       - uses: ./
         with:
           cache_key: build-test-${{ matrix.os }}
@@ -45,7 +54,10 @@ jobs:
       matrix:
         os: [ubuntu-latest]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
       - uses: ./
         with:
           cache_key: build-test-${{ matrix.os }}
