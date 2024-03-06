@@ -19,12 +19,11 @@ jobs:
       - run: yarn
       - name: run tests
         env:
-          buildcache_tag: v0.28.9
+          ACTION_BUILDCACHE_TAG: v0.28.9
         run: yarn all
   build-ubuntu-20-04: # make sure build/ci work properly
     env:
       GITHUB_TOKEN: '${{ github.token }}'
-      ACTION_BUILDCACHE_TAG: "v0.27.6"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -34,7 +33,7 @@ jobs:
       - run: yarn
       - name: run tests
         env:
-          buildcache_tag: v0.28.9
+          ACTION_BUILDCACHE_TAG: v0.28.9
         run: yarn all
   test: # make sure the action works on a clean machine without building
     runs-on: ${{ matrix.os }}

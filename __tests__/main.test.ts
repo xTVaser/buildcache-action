@@ -27,10 +27,6 @@ beforeEach(() => {
   fs.mkdirSync(ghWorkspace, { recursive: true })
 })
 
-// test('downloads latest buildcache', async () => {
-//   await expect(downloadLatest()).rejects.toThrow('Unable to download')
-// })
-
 type Input = { [key: string]: string }
 
 function mapInputToEnv(input: Input): NodeJS.ProcessEnv {
@@ -51,17 +47,13 @@ test('test bundled restore runs', async () => {
       ...process.env,
       PATH,
       ...mapInputToEnv({
-        buildcache_tag: process.env['ACTION_BUILDCACHE_TAG'] || 'latest'
+        buildcache_tag: process.env['ACTION_BUILDCACHE_TAG'] || 'v0.28.9'
       })
     }
   }
 
   const rp = path.join(__dirname, '..', 'dist', 'restore', 'index.js')
-  try {
-    console.log(cp.execFileSync(np, ['--trace-warnings', rp], options).toString())
-  } catch (e: any) {
-    console.log(e);
-  }
+  console.log(cp.execFileSync(np, ['--trace-warnings', rp], options).toString())
 
   // assert that the binary is in ghWorkspace/buildcache/bin/buildcache
   // assert that the symbolic links to clang and clang++ are there
