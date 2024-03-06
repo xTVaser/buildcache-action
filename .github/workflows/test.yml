@@ -12,32 +12,43 @@ jobs:
       GITHUB_TOKEN: '${{ github.token }}'
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v3
-      - run: |
-          yarn
-      - run: |
-          yarn all
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: yarn
+      - name: run tests
+        env:
+          ACTION_BUILDCACHE_TAG: v0.28.9
+        run: yarn all
   build-ubuntu-20-04: # make sure build/ci work properly
     env:
       GITHUB_TOKEN: '${{ github.token }}'
-      ACTION_BUILDCACHE_TAG: "v0.27.6"
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - run: |
-          yarn
-      - run: |
-          yarn all
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: yarn
+      - name: run tests
+        env:
+          ACTION_BUILDCACHE_TAG: v0.28.9
+        run: yarn all
   test: # make sure the action works on a clean machine without building
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-22.04, macos-latest, windows-latest]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
       - uses: ./
         with:
           cache_key: build-test-${{ matrix.os }}
+          buildcache_tag: v0.28.9
   test-ubuntu-20-04: # make sure the action works on a clean machine without building
     # https://github.com/mbitsnbites/buildcache/issues/291
     runs-on: ${{ matrix.os }}
@@ -45,9 +56,12 @@ jobs:
       matrix:
         os: [ubuntu-latest]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
       - uses: ./
         with:
           cache_key: build-test-${{ matrix.os }}
-          buildcache_tag: v0.27.6
+          buildcache_tag: v0.28.9
 

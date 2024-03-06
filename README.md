@@ -1,10 +1,9 @@
-# Archived - feel free to fork!
+# Changes from Original
 
-With apologies, I no longer use buildcache at all (ccache started working with react-native compiles shortly after I tried buildcache, so I started using ccache)
-
-I helped document ccache integration here https://reactnative.dev/docs/build-speed#use-a-compiler-cache
-
-As such I have no particular interest in this software and will not be maintaining it. Please feel free to fork it and continue development if you like
+- Keeping the lights on by doing bare minimum updates
+- Updated to Node20
+- Pulls releases from https://gitlab.com/bits-n-bites/buildcache/-/releases as `buildcache` moved to GitLab
+- You must explicitly provide the `buildcache_tag` input
 
 # Accelerate builds using buildcache
 

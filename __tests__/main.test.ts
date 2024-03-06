@@ -27,10 +27,6 @@ beforeEach(() => {
   fs.mkdirSync(ghWorkspace, { recursive: true })
 })
 
-// test('downloads latest buildcache', async () => {
-//   await expect(downloadLatest()).rejects.toThrow('Unable to download')
-// })
-
 type Input = { [key: string]: string }
 
 function mapInputToEnv(input: Input): NodeJS.ProcessEnv {
@@ -51,7 +47,7 @@ test('test bundled restore runs', async () => {
       ...process.env,
       PATH,
       ...mapInputToEnv({
-        buildcache_tag: process.env['ACTION_BUILDCACHE_TAG'] || 'latest'
+        buildcache_tag: process.env['ACTION_BUILDCACHE_TAG'] || 'v0.28.9'
       })
     }
   }
