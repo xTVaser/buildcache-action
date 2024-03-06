@@ -16,10 +16,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: |
-          yarn
-      - run: |
-          yarn all
+      - run: yarn
+      - name: run tests
+        env:
+          buildcache_tag: v0.28.9
+        run: yarn all
   build-ubuntu-20-04: # make sure build/ci work properly
     env:
       GITHUB_TOKEN: '${{ github.token }}'
@@ -30,10 +31,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - run: |
-          yarn
-      - run: |
-          yarn all
+      - run: yarn
+      - name: run tests
+        env:
+          buildcache_tag: v0.28.9
+        run: yarn all
   test: # make sure the action works on a clean machine without building
     runs-on: ${{ matrix.os }}
     strategy:

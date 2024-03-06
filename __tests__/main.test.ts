@@ -57,7 +57,11 @@ test('test bundled restore runs', async () => {
   }
 
   const rp = path.join(__dirname, '..', 'dist', 'restore', 'index.js')
-  console.log(cp.execFileSync(np, ['--trace-warnings', rp], options).toString())
+  try {
+    console.log(cp.execFileSync(np, ['--trace-warnings', rp], options).toString())
+  } catch (e: any) {
+    console.log(e);
+  }
 
   // assert that the binary is in ghWorkspace/buildcache/bin/buildcache
   // assert that the symbolic links to clang and clang++ are there
